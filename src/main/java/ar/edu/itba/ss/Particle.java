@@ -1,7 +1,9 @@
 package ar.edu.itba.ss;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Particle {
 
@@ -10,14 +12,14 @@ public class Particle {
     private double y;
     private double radius;
     private double property;
-    private List<Particle> neighbours;
+    private Set<Particle> neighbours;
 
     public Particle(int id, double x, double y, double radius, double property){
         this.id = id;
         this.x = x;
         this.y = y;
         this.radius = radius;
-        this.neighbours = new ArrayList<Particle>();
+        this.neighbours = new HashSet<Particle>();
         this.property = property;
     }
 
@@ -25,7 +27,7 @@ public class Particle {
         this.id = id;
         this.radius = radius;
         this.property = property;
-        this.neighbours = new ArrayList<Particle>();
+        this.neighbours = new HashSet<Particle>();
     }
 
     public int getId(){
@@ -44,7 +46,7 @@ public class Particle {
         return radius;
     }
 
-    public List<Particle> getNeighbours() {
+    public Set<Particle> getNeighbours() {
         return neighbours;
     }
 
@@ -73,5 +75,20 @@ public class Particle {
                 ", radius=" + radius +
                 ", property=" + property +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Particle particle = (Particle) o;
+
+        return id == particle.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
     }
 }

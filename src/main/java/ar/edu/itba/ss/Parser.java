@@ -9,7 +9,8 @@ import java.util.Scanner;
 public class Parser {
 
     private static int numberOfParticles;
-    private static Queue<Particle> particles = new LinkedList<Particle>();
+    static Queue<Particle> particles = new LinkedList<Particle>();
+    static int areaLength;
 
     public static void parseParticles() throws FileNotFoundException {
         staticSystemParse();
@@ -20,7 +21,7 @@ public class Parser {
         File staticFile = new File(CliParser.staticFile);
         Scanner sc = new Scanner(staticFile);
         numberOfParticles = sc.nextInt();
-        int areaLength = sc.nextInt();
+        areaLength = sc.nextInt();
         for (int i = 0; i < numberOfParticles; i++){
             double radius   = sc.nextDouble();
             double property = sc.nextDouble();

@@ -63,4 +63,15 @@ public class Particle {
     public void setY(double y){
         this.y = y;
     }
+
+    @Override
+    public String toString() {
+        return "Particle{" +
+                "id=" + id +
+                ", x=" + x +
+                ", y=" + y +
+                ", radius=" + radius +
+                ", property=" + property +
+                '}';
+    }
 }

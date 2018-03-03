@@ -6,6 +6,7 @@ import java.util.List;
 
 import static ar.edu.itba.ss.CliParser.interactionRadius;
 import static ar.edu.itba.ss.CliParser.matrixSize;
+import static ar.edu.itba.ss.CliParser.periodicContour;
 import static ar.edu.itba.ss.Parser.areaLength;
 import static ar.edu.itba.ss.Parser.particles;
 
@@ -74,10 +75,28 @@ public class App {
 
     private static void checkAdjacent(Particle particle, double cellX, double cellY) {
 
-        //TODO: periodic contourn
+        if (periodicContour) {
 
-        if (cellX >= matrixSize || cellX < 0 || cellY >= matrixSize || cellY < 0){
-            return;
+            if (cellX >= matrixSize){
+                cellX = 0;
+            }
+
+            if (cellY >= matrixSize){
+                cellY = 0;
+            }
+
+            if (cellX == -1){
+                cellX = matrixSize - 1;
+            }
+
+            if (cellY == -1){
+                cellY = matrixSize - 1;
+            }
+
+        }else {
+            if (cellX >= matrixSize || cellX < 0 || cellY >= matrixSize || cellY < 0) {
+                return;
+            }
         }
 
         int adjCellNumber = (int) (cellY * matrixSize + cellX);
@@ -89,7 +108,8 @@ public class App {
             if (adjacentParticle.getId() != particle.getId()){ // Avoid checking the same particle
 
                 double distance = Math.sqrt(Math.pow(particle.getX() - adjacentParticle.getX(), 2) +
-                        Math.pow(particle.getY() - adjacentParticle.getY(), 2));
+                        Math.pow(particle.getY() - adjacentParticle.getY(), 2))
+                        - particle.getRadius() - adjacentParticle.getRadius();
 
                 if (distance < interactionRadius){
                     particle.addNeighbour(adjacentParticle);

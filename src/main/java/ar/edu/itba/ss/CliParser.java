@@ -8,6 +8,7 @@ public class CliParser {
     public static String dynamicFile;
     public static int matrixSize;
     public static double interactionRadius;
+    public static boolean periodicContour;
 
     private static Options createOptions(){
         Options options = new Options();
@@ -16,6 +17,7 @@ public class CliParser {
         options.addOption("rc", "radius", true, "Radius of interaction between particles.");
         options.addOption("sf", "static_file", true, "Path to the file with the static values.");
         options.addOption("df", "dynamic_file", true, "Path to the file with the dynamic values.");
+        options.addOption("pc", "periodic_contour", false, "Enables periodic contour conditions.");
         return options;
     }
 
@@ -41,6 +43,9 @@ public class CliParser {
             }
             if (cmd.hasOption("rc")){
                 interactionRadius = Double.parseDouble(cmd.getOptionValue("rc"));
+            }
+            if (cmd.hasOption("pc")){
+                periodicContour = true;
             }
 
         }catch (Exception e){

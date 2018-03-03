@@ -8,7 +8,7 @@ public class CliParser {
     public static String dynamicFile;
     public static int matrixSize;
     public static double interactionRadius;
-    public static boolean periodicContour;
+    public static boolean periodicContour = false;
 
     private static Options createOptions(){
         Options options = new Options();

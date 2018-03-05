@@ -24,3 +24,6 @@ hs_err_pid*
 # IntellijIdea
 .idea/
 cell-index-method.iml
+
+# Our own files
+*.ari

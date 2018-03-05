@@ -6,9 +6,10 @@ public class CliParser {
 
     public static String staticFile;
     public static String dynamicFile;
-    public static int matrixSize;
-    public static double interactionRadius;
-    public static boolean periodicContour = false;
+    static int matrixSize;
+    static double interactionRadius;
+    static boolean periodicContour = false;
+    static boolean bruteForce = false;
 
     private static Options createOptions(){
         Options options = new Options();
@@ -18,6 +19,7 @@ public class CliParser {
         options.addOption("sf", "static_file", true, "Path to the file with the static values.");
         options.addOption("df", "dynamic_file", true, "Path to the file with the dynamic values.");
         options.addOption("pc", "periodic_contour", false, "Enables periodic contour conditions.");
+        options.addOption("bf", "brute_force", false, "Enables brute force mode.");
         return options;
     }
 
@@ -30,6 +32,11 @@ public class CliParser {
             if(cmd.hasOption("h")){
                 help(options);
             }
+
+            if(cmd.hasOption("bf")){
+                bruteForce = true;
+            }
+
             if (!cmd.hasOption("df") || !cmd.hasOption("sf")){
                 System.out.println("You must specify a static file and a dynamic file!");
                 System.exit(1);

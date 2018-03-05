@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static ar.edu.itba.ss.CliParser.bruteForce;
 import static ar.edu.itba.ss.CliParser.interactionRadius;
 import static ar.edu.itba.ss.CliParser.matrixSize;
 import static ar.edu.itba.ss.CliParser.periodicContour;
@@ -26,6 +27,28 @@ public class App {
 
         long startTime = System.currentTimeMillis();
 
+        if (bruteForce){
+            bruteForceAlgorithm();
+        }else{
+            cellIndexMethod();
+        }
+
+        long stopTime = System.currentTimeMillis();
+        long elapsedTime = stopTime - startTime;
+
+        System.out.println("Execution time: " + elapsedTime + "ms");
+
+        for (Particle p : particles){
+            System.out.print(p.getId());
+            for (Particle neighbour : p.getNeighbours()){
+                System.out.print(" " + neighbour.getId());
+            }
+            System.out.print("\n");
+        }
+
+    }
+
+    private static void cellIndexMethod(){
         /* Initialize cells */
         cells = new ArrayList<List<Particle>>();
 
@@ -57,20 +80,6 @@ public class App {
             }
         }
 
-        for (List<Particle> particleList : cells){
-            for (Particle p : particleList){
-                System.out.print(p.getId());
-                for (Particle neighbour : p.getNeighbours()){
-                    System.out.print(" " + neighbour.getId());
-                }
-                System.out.print("\n");
-            }
-        }
-
-        long stopTime = System.currentTimeMillis();
-        long elapsedTime = stopTime - startTime;
-
-        System.out.println("Execution time: " + elapsedTime);
     }
 
     private static void checkAdjacent(Particle particle, double cellX, double cellY) {
@@ -114,6 +123,19 @@ public class App {
                     adjacentParticle.addNeighbour(particle);
                 }
 
+            }
+        }
+    }
+
+    private static void bruteForceAlgorithm(){
+        for (Particle p1: particles){
+            for (Particle p2: particles){
+                if (!p1.equals(p2) && !p1.getNeighbours().contains(p2)){
+                    if (p1.getDistanceTo(p2) < interactionRadius){
+                        p1.addNeighbour(p2);
+                        p2.addNeighbour(p1);
+                    }
+                }
             }
         }
     }

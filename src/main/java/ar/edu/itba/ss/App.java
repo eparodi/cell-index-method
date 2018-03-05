@@ -107,9 +107,7 @@ public class App {
 
             if (adjacentParticle.getId() != particle.getId()){ // Avoid checking the same particle
 
-                double distance = Math.sqrt(Math.pow(particle.getX() - adjacentParticle.getX(), 2) +
-                        Math.pow(particle.getY() - adjacentParticle.getY(), 2))
-                        - particle.getRadius() - adjacentParticle.getRadius();
+                double distance = particle.getDistanceTo(adjacentParticle);
 
                 if (distance < interactionRadius){
                     particle.addNeighbour(adjacentParticle);

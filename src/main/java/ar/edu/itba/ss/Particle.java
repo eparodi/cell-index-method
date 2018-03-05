@@ -64,6 +64,12 @@ public class Particle {
         this.y = y;
     }
 
+    public double getDistanceTo(Particle particle){
+        return Math.sqrt(Math.pow(x - particle.getX(), 2) +
+                Math.pow(y - particle.getY(), 2))
+                - radius - particle.getRadius();
+    }
+
     @Override
     public String toString() {
         return "Particle{" +

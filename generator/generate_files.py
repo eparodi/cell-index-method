@@ -21,7 +21,7 @@ def generate_files(file_type, index, number, length, radius_mean=0.5, radius_dis
 
 NUMBER_OF_SIMULATIONS = 20
 
-numbers = random.random_integers(10, 100, NUMBER_OF_SIMULATIONS)
+numbers = [i * 20 for i in range(1, NUMBER_OF_SIMULATIONS + 1)]
 numbers.sort()
 
 for x in range(0, NUMBER_OF_SIMULATIONS):

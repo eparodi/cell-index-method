@@ -1,6 +1,7 @@
-function animation(static_file, dynamic_file, output_file, particle)
+function animation(static_file, dynamic_file, output_file, m, particle)
   fileID = fopen(static_file,'r');
   N = str2num(fgetl(fileID));
+  L = str2num(fgetl(fileID));
   fclose(fileID);
   [radius colour] = textread(static_file,"%f %f", 'headerLines', 2);
   [x y] = textread(dynamic_file,"%f %f", 'headerLines', 1);
@@ -23,4 +24,7 @@ function animation(static_file, dynamic_file, output_file, particle)
   queryX1 = x(highlighted);
   queryY1 = y(highlighted);
   plot = scatter(queryX1,queryY1,'r', 'filled');
+  set(gca,'xtick',[0:(L/m):L]);
+  set(gca,'ytick',[0:(L/m):L]);
+  grid on;
 endfunction

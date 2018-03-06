@@ -25,7 +25,7 @@ public class Parser {
         for (int i = 0; i < numberOfParticles; i++){
             double radius   = sc.nextDouble();
             double property = sc.nextDouble();
-            particles.add(new Particle(i, radius, property));
+            particles.add(new Particle(i + 1, radius, property));
         }
     }
 

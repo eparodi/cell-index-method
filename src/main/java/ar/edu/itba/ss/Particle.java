@@ -70,6 +70,10 @@ public class Particle {
                 - radius - particle.getRadius();
     }
 
+    public int compareTo(Particle particle){
+        return id - particle.getId();
+    }
+
     @Override
     public String toString() {
         return "Particle{" +

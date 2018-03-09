@@ -3,6 +3,9 @@ package ar.edu.itba.ss;
 import java.util.HashSet;
 import java.util.Set;
 
+import static ar.edu.itba.ss.CliParser.periodicContour;
+import static ar.edu.itba.ss.Parser.areaLength;
+
 public class Particle {
 
     private int id;
@@ -11,6 +14,9 @@ public class Particle {
     private double radius;
     private double property;
     private Set<Particle> neighbours;
+
+    private double cellX;
+    private double cellY;
 
     public Particle(int id, double x, double y, double radius, double property){
         this.id = id;
@@ -70,6 +76,31 @@ public class Particle {
                 - radius - particle.getRadius();
     }
 
+    public double getPeriodicDistanceTo(Particle particle){
+
+        boolean incX = false;
+        boolean incY = false;
+        boolean decY = false;
+
+        double distX = this.cellX - particle.getCellX();
+
+        if (distX > 1){
+            incX = true;
+        }
+
+        double distY = this.cellY - particle.getCellY();
+
+        if (distY > 1){
+            incY = true;
+        }else if (distY < -1){
+            decY = true;
+        }
+
+        return Math.sqrt(Math.pow(x - particle.getX() - (incX?areaLength:0), 2) +
+                Math.pow(y - particle.getY() - (incY?areaLength:0) + (decY?areaLength:0), 2))
+                - radius - particle.getRadius();
+    }
+
     public int compareTo(Particle particle){
         return id - particle.getId();
     }
@@ -98,5 +129,21 @@ public class Particle {
     @Override
     public int hashCode() {
         return id;
+    }
+
+    public double getCellX() {
+        return cellX;
+    }
+
+    public double getCellY() {
+        return cellY;
+    }
+
+    public void setCellX(double cellX) {
+        this.cellX = cellX;
+    }
+
+    public void setCellY(double cellY) {
+        this.cellY = cellY;
     }
 }

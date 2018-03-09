@@ -63,14 +63,15 @@ public class App {
             double cellY = Math.floor(p.getY() / (areaLength/matrixSize));
             int cellNumber = (int) (cellY * matrixSize + cellX);
             List <Particle> cellParticles = cells.get(cellNumber);
+            p.setCellX(cellX);
+            p.setCellY(cellY);
             cellParticles.add(p);
         }
 
         for (List<Particle> cellParticles : cells){
             for (Particle p : cellParticles){
-                /*TODO: save to avoid recalculation? */
-                double cellX = Math.floor(p.getX() / (areaLength/matrixSize));
-                double cellY = Math.floor(p.getY() / (areaLength/matrixSize));
+                double cellX = p.getCellX();
+                double cellY = p.getCellY();
 
                 checkAdjacent(p, cellX, cellY);
                 checkAdjacent(p, cellX, cellY + 1);
@@ -116,7 +117,13 @@ public class App {
 
             if (adjacentParticle.getId() != particle.getId()){ // Avoid checking the same particle
 
-                double distance = particle.getDistanceTo(adjacentParticle);
+                double distance;
+
+                if (periodicContour){
+                    distance = particle.getPeriodicDistanceTo(particle);
+                }else{
+                    distance = particle.getDistanceTo(adjacentParticle);
+                }
 
                 if (distance < interactionRadius){
                     particle.addNeighbour(adjacentParticle);
@@ -131,7 +138,16 @@ public class App {
         for (Particle p1: particles){
             for (Particle p2: particles){
                 if (!p1.equals(p2) && !p1.getNeighbours().contains(p2)){
-                    if (p1.getDistanceTo(p2) < interactionRadius){
+
+                    double distance;
+
+                    if (periodicContour){
+                        distance = p1.getPeriodicDistanceTo(p2);
+                    }else{
+                        distance = p1.getDistanceTo(p2);
+                    }
+
+                    if (distance < interactionRadius){
                         p1.addNeighbour(p2);
                         p2.addNeighbour(p1);
                     }

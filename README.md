@@ -20,13 +20,13 @@ java -jar cell-index-method-1.0-SNAPSHOT-jar-with-dependencies.jar
 ```
 Parameters:
 
-* -bf,--brute_force: Enables brute force mode.
-* -df,--dynamic_file <arg>: Path to the file with the dynamic values.
-* -h,--help: Shows the help.
-* -m,--matrix <arg>: Size of the squared matrix.
-* -pc,--periodic_contour: Enables periodic contour conditions.
-* -rc,--radius <arg>: Radius of interaction between particles.
-* -sf,--static_file <arg>: Path to the file with the static values.
+* **-bf, --brute_force**: Enables brute force mode.
+* **-df, --dynamic_file &lt;arg>**: Path to the file with the dynamic values.
+* **-h, --help**: Shows the help.
+* **-m, --matrix &lt;arg>**: Size of the squared matrix.
+* **-pc, --periodic_contour**: Enables periodic contour conditions.
+* **-rc, --radius &lt;arg>**: Radius of interaction between particles.
+* **-sf, --static_file &lt;arg>**: Path to the file with the static values.
 
 or if you ran the program that generates random values you can run:
 

@@ -9,6 +9,10 @@ mvn package
 ```
 
 ## Execution
+### Generation of Random Values
+```
+python generator/generate_values.py
+```
 ### Simulation
 
 ```
@@ -23,6 +27,14 @@ Parameters:
 * -pc,--periodic_contour: Enables periodic contour conditions.
 * -rc,--radius <arg>: Radius of interaction between particles.
 * -sf,--static_file <arg>: Path to the file with the static values.
+
+or if you ran the program that generates random values you can run:
+
+```
+python runner.py
+``` 
+
+This program returns a csv in the folder with the results of the simulations.
 
 ### Animation
 

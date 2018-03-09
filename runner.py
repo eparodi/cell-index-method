@@ -12,7 +12,7 @@ with open('results-bf.csv', 'w') as f:
     csv_writer.writerow(header)
     for x in range(1, 20):
         averages = [x]
-        std = ['']
+        std = ['std']
         for y in range(1, 21):
             values = []
             brute_force = '-bf' if y == 20 else ''

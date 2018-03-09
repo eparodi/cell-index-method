@@ -26,11 +26,11 @@ Parameters:
 
 ### Animation
 
-The animation can be run by executing the octave file `animation.m` that 
+The animation can be run by executing the octave file `animation.m` that
 accepts the following parameters `animation(static_file, dynamic_file, output_file, m, particle)`.
 
 * **static_file**: Path to the file with the static values.
-* **dynamic_file**: Path to the file with the static values.
+* **dynamic_file**: Path to the file with the dynamic values.
 * **output**: Path to the file that contains the output of the simulation.
 * **m**: Size of the squared matrix.
 * **particle**: id of the selected particle to print it's neighbours.

@@ -15,14 +15,13 @@ def generate_dynamic_file(number, length, name):
     for x in range(0, number):
         f.write('{} {}\n'.format(random.uniform(0, length), random.uniform(0,length)))
 
-def generate_files(file_type, index, number, length, radius_mean=0.5, radius_disp=0.1):
-    generate_static_file(number, length, file_type +'-static-' + str(index) + '.ari')
-    generate_dynamic_file(number, length, file_type + '-dynamic-' + str(index) + '.ari')
+def generate_files(index, number, length, radius_mean=0.5, radius_disp=0.1):
+    generate_static_file(number, length,'static-' + str(index) + '.ari')
+    generate_dynamic_file(number, length,'dynamic-' + str(index) + '.ari')
 
-NUMBER_OF_SIMULATIONS = 20
+numbers = [10,20,30,40,50,60,70,80,90,100,200,300,400,500,600,700,800,900,1000]
 
-numbers = [i * 20 for i in range(1, NUMBER_OF_SIMULATIONS + 1)]
-numbers.sort()
-
-for x in range(0, NUMBER_OF_SIMULATIONS):
-    generate_files('2', x, numbers[x], 20)
+i = 0
+for x in numbers:
+    i += 1
+    generate_files(i, numbers[i-1], 20)

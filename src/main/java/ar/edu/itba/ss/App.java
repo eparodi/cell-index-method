@@ -120,7 +120,7 @@ public class App {
                 double distance;
 
                 if (periodicContour){
-                    distance = particle.getPeriodicDistanceTo(particle);
+                    distance = particle.getPeriodicDistanceTo(adjacentParticle);
                 }else{
                     distance = particle.getDistanceTo(adjacentParticle);
                 }

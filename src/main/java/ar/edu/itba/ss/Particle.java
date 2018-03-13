@@ -78,27 +78,15 @@ public class Particle {
 
     public double getPeriodicDistanceTo(Particle particle){
 
-        boolean incX = false;
-        boolean incY = false;
-        boolean decY = false;
+        double dx = Math.abs(this.x - particle.x);
+        if (dx > Parser.areaLength / 2)
+            dx = Parser.areaLength - dx;
 
-        double distX = this.cellX - particle.getCellX();
+        double dy = Math.abs(this.y - particle.y);
+        if (dy > Parser.areaLength / 2)
+            dy = Parser.areaLength - dy;
 
-        if (distX > 1){
-            incX = true;
-        }
-
-        double distY = this.cellY - particle.getCellY();
-
-        if (distY > 1){
-            incY = true;
-        }else if (distY < -1){
-            decY = true;
-        }
-
-        return Math.sqrt(Math.pow(x - particle.getX() - (incX?areaLength:0), 2) +
-                Math.pow(y - particle.getY() - (incY?areaLength:0) + (decY?areaLength:0), 2))
-                - radius - particle.getRadius();
+        return Math.sqrt(Math.pow(dx,2) + Math.pow(dy,2));
     }
 
     public int compareTo(Particle particle){

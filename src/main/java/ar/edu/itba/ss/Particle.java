@@ -1,12 +1,9 @@
 package ar.edu.itba.ss;
 
-import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
-import static ar.edu.itba.ss.CliParser.periodicContour;
-import static ar.edu.itba.ss.Parser.areaLength;
-
-public class Particle {
+public class Particle implements Comparable<Particle>{
 
     private int id;
     private double x;
@@ -23,7 +20,7 @@ public class Particle {
         this.x = x;
         this.y = y;
         this.radius = radius;
-        this.neighbours = new HashSet<Particle>();
+        this.neighbours = new TreeSet<>();
         this.property = property;
     }
 
@@ -31,7 +28,7 @@ public class Particle {
         this.id = id;
         this.radius = radius;
         this.property = property;
-        this.neighbours = new HashSet<Particle>();
+        this.neighbours = new TreeSet<>();
     }
 
     public int getId(){
